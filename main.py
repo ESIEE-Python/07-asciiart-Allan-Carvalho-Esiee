@@ -2,10 +2,13 @@
 
 
 #### Fonctions secondaires
-
+'''
+author : allan.carvalho@edu.esiee.fr
+'''
 
 def artcode_i(s):
-    """retourne la liste de tuples encodant une chaîne de caractères passée en argument selon un algorithme itératif
+    """retourne la liste de tuples encodant une chaîne
+       de caractères passée en argument selon un algorithme itératif
 
     Args:
         s (str): la chaîne de caractères à encoder
@@ -13,14 +16,22 @@ def artcode_i(s):
     Returns:
         list: la liste des tuples (caractère, nombre d'occurences)
     """
-    
-    # votre code ici
-
-    return [ ]
-
+    L=[]
+    count = 1
+    caractere = s[0]
+    for i in range (1,len(s)) :
+        if s[i]==caractere :
+            count+=1
+        else :
+            L.append((caractere,count))
+            caractere = s[i]
+            count=1
+    L.append((caractere,count))
+    return L
 
 def artcode_r(s):
-    """retourne la liste de tuples encodant une chaîne de caractères passée en argument selon un algorithme récursif
+    """retourne la liste de tuples encodant une 
+       chaîne de caractères passée en argument selon un algorithme récursif
 
     Args:
         s (str): la chaîne de caractères à encoder
@@ -28,20 +39,21 @@ def artcode_r(s):
     Returns:
         list: la liste des tuples (caractère, nombre d'occurences)
     """
-    
-    # votre code ici
+    count = 1
+    tuple1 = (s[0], count)
+    while count < len(s) and s[count] == s[0]:
+        count += 1
 
-    # cas de base
-    # recherche nombre de caractères identiques au premier
-    # appel récursif
+    return [tuple1] + artcode_r(s[count:])
 
-    return []
-    
 
 #### Fonction principale
 
 
 def main():
+    '''
+    Test la fonction
+    '''
     print(artcode_i('MMMMaaacXolloMM'))
     print(artcode_r('MMMMaaacXolloMM'))
 
